@@ -20,6 +20,7 @@ Every run:
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import os
 import re
@@ -61,8 +62,11 @@ def _setting(name: str) -> str | None:
     return os.environ.get(name) or dotenv_values(ENV_FILE).get(name)
 
 
+@functools.cache
 def build_model() -> OpenAIResponsesModel:
-    """gpt-6-luna through Portkey, via the Responses API (tools + reasoning)."""
+    """gpt-6-luna through Portkey, via the Responses API (tools + reasoning).
+
+    Built on first use (not at import), so `--help` works and a missing key gives a clear message."""
     configured = _setting("PORTKEY_MODEL")
     if configured and configured != MODEL_NAME:
         raise RuntimeError(f"PORTKEY_MODEL is {configured!r}; Homework 6 may only use {MODEL_NAME!r}.")
@@ -100,7 +104,7 @@ async def design_only(ctx: RunContext[RunDeps], tool_def: ToolDefinition) -> Too
 
 
 agent = Agent(
-    build_model(),
+    None,  # the model (gpt-6-luna via Portkey) is supplied on each run by build_model()
     instructions=HANDBOOK_BLOCK,  # static: sent first, with the cache breakpoint right after it
     deps_type=RunDeps,
     output_type=VendorDecision,
@@ -284,6 +288,7 @@ def run(
         try:
             result = agent.run_sync(
                 f"Review this vendor document and report your recommendation: {document}",
+                model=build_model(),
                 deps=deps,
                 model_settings=cache_settings(no_cache),
             )
@@ -326,6 +331,10 @@ def main() -> None:
     path = Path(args.doc)
     if not (ROOT / path).is_file():
         parser.error(f"No such document: {args.doc}")
+    try:
+        build_model()
+    except RuntimeError as exc:  # missing PORTKEY_API_KEY, or PORTKEY_MODEL isn't gpt-6-luna
+        raise SystemExit(f"Setup error: {exc} Copy .env.example to .env and add your Portkey key.")
     answer, _ = run(
         args.doc,
         no_cache=args.no_cache,

@@ -4038,5 +4038,25 @@
       "output": 0.000102,
       "total": 0.00098153
     }
+  },
+  {
+    "document": "data/my_attacks/a01_bluehen_sku_swap.html",
+    "time": "2026-10-18T01:28:15+00:00",
+    "setup": "cache",
+    "model": "gpt-6-luna-global",
+    "requests": 2,
+    "input_tokens": 22270,
+    "cached_input_tokens": 20708,
+    "cache_write_tokens": 1310,
+    "uncached_input_tokens": 252,
+    "output_tokens": 623,
+    "reasoning_tokens": 488,
+    "cost_usd": {
+      "uncached_input": 2.52e-05,
+      "cached_input": 0.00020708,
+      "cache_write": 0.00016375,
+      "output": 0.0003115,
+      "total": 0.00070753
+    }
   }
 ]
