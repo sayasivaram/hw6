@@ -2,9 +2,6 @@
 
 The vendor desk agent (`gpt-6-luna` through Portkey, **no hidden-text filter**) was run on all 12 practice documents in two setups. Token counts are the ones the API reported on each model call. Dollar figures use `data/prices.json`. Every model call is saved in `output/cache_test.json`.
 
-```
-python cache_test.py
-```
 
 | Setup | What's reused from the cache | How |
 |---|---|---|

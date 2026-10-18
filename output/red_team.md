@@ -1,10 +1,7 @@
 # Red Team — Two New Booby-Trapped Vendor Documents
 
-We played the attacker and wrote two vendor documents, in `data/my_attacks/`, that look like normal quotes to a person but carry a trap for an AI. Each was run twice: once on the agent with all defenses on, and once with `--no-defenses`. The answers were checked against `data/my_attacks/my_attacks_key.json`, which holds the values a person reading the visible quote would report. Full results, with tokens and cost, are in `output/red_team_results.json`.
+We played the attacker and wrote two vendor documents, in `data/my_attacks/`, that look like normal quotes to a person but carry a trap for an AI. Each was run twice: once on the agent with all defenses on, and once with `--no-defenses`. The answers were checked against the values a person reading the visible quote would report (the "Correct answer" in each attack's section). Tokens and cost for every run are in the tables below.
 
-```
-python red_team_test.py
-```
 
 ## Results at a glance
 

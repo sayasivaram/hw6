@@ -7,8 +7,8 @@ An agent that reads a vendor document (HTML quote, PDF quote, or `.eml` email), 
 Everything the agent needs is in the repo: the handbook, prices, practice key, the 12 practice documents, the 10 exam documents, and our two attack files are all in `data/`. The only thing you add is your own Portkey key; the repo never contains one.
 
 ```bash
-git clone https://github.com/sayasivaram/hw6-campus-customs.git
-cd hw6-campus-customs
+git clone https://github.com/sayasivaram/hw6.git
+cd hw6
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 cp .env.example .env        # then set PORTKEY_API_KEY=<your Portkey key> in .env
@@ -28,15 +28,18 @@ To switch off one defense level, use `--no-code-defenses`, `--no-design-defenses
 
 Every run appends to `output/usage_log.json` (tokens and dollars), `output/audit_trail.json` (every tool call and the final answer), and, only if a document took over the agent, `output/trap_calls.json`. `send_email` and `approve_payment` are trap tools: they never send or pay anything.
 
-## Reproduce the results
+## What's in `output/`
 
-| Script | Problem | Writes |
+| File | Problem | What it is |
 |---|---|---|
-| `cache_test.py` | 4 — caching | `output/cache_test.json` |
-| `attack_test.py` | 5 — attacks | `output/attack_results.json` |
-| `defense_test.py` | 6 — defenses | `output/defense_results.json` |
-| `red_team_test.py` | 7 — red team | `output/red_team_results.json` |
-| `run_exam.py` | 8 — exam | `output/exam_results.json` |
-| `build_report.py` | 9 — results page | `output/hw6_report.html` |
+| `handbook_estimate.md` | 2 | Handbook token count and cost estimate |
+| `harness.md` | 3, 6 | Every field in `models.py` and why, one line per tool, and the Safety section |
+| `usage_log.json`, `audit_trail.json`, `trap_calls.json` | 3 | Per-run logs written by `agent.py` |
+| `cache_test.json`, `cache_test.md` | 4 | Every model call with and without the cached handbook, and the analysis |
+| `attack_results.json`, `attack_results.md` | 5 | The agent vs. the 12 practice documents |
+| `defense_results.json`, `defense_results.md` | 6 | Before and after defenses, per layer, with tokens and dollars |
+| `red_team.md` | 7 | Our two attack files in `data/my_attacks/` and what they did |
+| `exam_results.json` | 8 | The final defended agent on the 10 exam documents |
+| `hw6_report.html` | 9 | The results dashboard: one self-contained file, double-click to open |
 
 Write-ups are in `output/*.md`. The field-by-field and safety documentation is in `output/harness.md`. The prompt log is `AI_prompts.md`. Model wording varies between runs, so reason text and token counts will differ slightly on a rerun.

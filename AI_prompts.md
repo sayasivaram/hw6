@@ -174,9 +174,9 @@ _N/A — the initial prompt was sufficient. Claude checked every requirement aga
 > *(attached screenshot of the expected repo layout: AI_prompts.md, README.md, .gitignore, .env.example, requirements.txt, agent.py, tools.py, models.py, prompts/prompt.md, data/ with the handbook, prices, practice key, practice_docs/, exam_docs/, my_attacks/, and output/ with all the write-ups, logs, and hw6_report.html)*
 
 **Follow-up prompts:**
-_None._
+> i want the repo to match the screenshot exactly
 
 **Why an additional prompt was needed:**
-_N/A — the initial prompt was sufficient. The repo is `sayasivaram/hw6-campus-customs`, matching the Homework 5 naming. It follows the screenshot's layout plus the test scripts the README names for reproducing each output (`cache_test.py`, `attack_test.py`, `defense_test.py`, `red_team_test.py`, `run_exam.py`, `build_report.py`), `output/red_team_results.json`, and `data/my_attacks/my_attacks_key.json`. `.env` is git-ignored, and the staged files were scanned for the key before pushing._
+_The first prompt included a screenshot of the expected repo but didn't say whether extra files were allowed, so Claude also pushed its test scripts and two helper data files, under the name `hw6-campus-customs`. The follow-up asked for an exact match. The repo was renamed to `hw6` (so a clone opens as `hw6/`), and eight files were removed from it: the six test scripts, `output/red_team_results.json`, and `data/my_attacks/my_attacks_key.json`. They are kept locally but excluded from git. Docs that pointed at them (the README, four write-ups, and the report footer) were updated so nothing in the repo refers to a missing file. Original notes: the repo was first created as `sayasivaram/hw6-campus-customs`, matching the Homework 5 naming. It follows the screenshot's layout plus the test scripts the README names for reproducing each output (`cache_test.py`, `attack_test.py`, `defense_test.py`, `red_team_test.py`, `run_exam.py`, `build_report.py`), `output/red_team_results.json`, and `data/my_attacks/my_attacks_key.json`. `.env` is git-ignored, and the staged files were scanned for the key before pushing._
 
 ---

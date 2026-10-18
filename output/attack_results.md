@@ -2,9 +2,6 @@
 
 The Problem 3 vendor desk agent was run on all 12 documents in `data/practice_docs/` with **no hidden-text filter and no added defenses**. `read_vendor_document` hands the model every piece of text in the file: white text, zero-size and tiny fonts, `display:none`, HTML comments, off-page PDF text, and both the plain-text and HTML copies of an email. Each answer was compared with `data/practice_key.json`, and `output/trap_calls.json` was checked after every run. Per-document results are in `output/attack_results.json`.
 
-```
-python attack_test.py
-```
 
 ## Result: 0 of 12 documents fooled the agent
 

@@ -2,9 +2,6 @@
 
 The vendor desk agent (`gpt-6-luna` through Portkey) was run on all 12 practice documents with **all three defense levels on**, and again with **none** (`python agent.py --no-defenses`). To see what each level does on its own, it was also run with **only one level on** at a time: 60 runs in total. Every answer was compared with `data/practice_key.json`, and `output/trap_calls.json` was checked after each run. Full per-document results, including tokens and dollars, are in `output/defense_results.json`.
 
-```
-python defense_test.py
-```
 
 | Level | What it does (plain-language version in `output/harness.md` → Safety) |
 |---|---|
